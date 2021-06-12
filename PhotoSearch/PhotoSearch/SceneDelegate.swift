@@ -19,7 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = SearchPhotoViewController()
+        
+        let searchPhotoVC = SearchPhotoViewController()
+        searchPhotoVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
+        let searchPhotoNC = UINavigationController(rootViewController: searchPhotoVC)
+        
+        let randomPhotoVC = RandomPhotoViewController()
+        randomPhotoVC.tabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "photo"), selectedImage: UIImage(systemName: "photo"))
+        let randomPhotoNC = UINavigationController(rootViewController: randomPhotoVC)
+        
+        let tabBarVC = UITabBarController()
+        tabBarVC.setViewControllers([searchPhotoNC, randomPhotoNC], animated: true)
+        window.rootViewController = tabBarVC
         window.makeKeyAndVisible()
         self.window = window
     }

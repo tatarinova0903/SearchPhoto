@@ -8,7 +8,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .systemTeal
+        imageView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.5)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView

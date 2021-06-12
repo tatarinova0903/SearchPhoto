@@ -40,7 +40,7 @@ class SearchPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.getPhotos(page: 1, query: "")
-        
+        title = "Search"
         view.backgroundColor = .systemBackground
         configureCollectionView()
         configureSearchBar()
@@ -72,6 +72,7 @@ class SearchPhotoViewController: UIViewController {
     
     private func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.placeholder = "What are you looking for?"
     }
 
     // MARK: - Handlers
