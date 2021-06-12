@@ -70,9 +70,6 @@ class RandomPhotoViewController: UIViewController {
         generateButton.layer.cornerRadius = generateButton.frame.height / 2
     }
     
-    // MARK: - Configures
-    
-    
     // MARK: - Handlers
 
     @objc

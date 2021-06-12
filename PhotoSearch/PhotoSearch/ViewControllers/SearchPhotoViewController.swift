@@ -75,8 +75,6 @@ class SearchPhotoViewController: UIViewController {
         searchBar.placeholder = "What are you looking for?"
     }
 
-    // MARK: - Handlers
-
 }
 
 extension SearchPhotoViewController: SearchPhotoViewProtocol {
