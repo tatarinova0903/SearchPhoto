@@ -1,5 +1,6 @@
 import UIKit
 import PinLayout
+import Kingfisher
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
@@ -41,7 +42,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configures
     
-    func configure(with image: UIImage?) {
-        imageView.image = image
+    func configure(with imageURL: String) {
+        let url = URL(string: imageURL)
+        imageView.kf.setImage(with: url)
     }
 }

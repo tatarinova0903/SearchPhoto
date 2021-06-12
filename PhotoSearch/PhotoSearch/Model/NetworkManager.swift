@@ -2,7 +2,6 @@ import UIKit
 
 protocol NetworkManagerDescription {
     func getPhotos(page: Int, query: String, completion: @escaping (Result<APIResponse, Error>) -> Void)
-    func getPhoto(urlStr: String, completion: @escaping (Result<UIImage?, CustomErrors>) -> Void)
 }
 
 class NetworkManager: NetworkManagerDescription {
@@ -32,39 +31,6 @@ class NetworkManager: NetworkManagerDescription {
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
-            }
-        }
-        task.resume()
-    }
-    
-    func getPhoto(urlStr: String, completion: @escaping (Result<UIImage?, CustomErrors>) -> Void) {
-        
-        if let cachedImage = imageCache.object(forKey: urlStr as NSString) {
-            completion(.success(cachedImage))
-            return
-        }
-        
-        guard let url = URL(string: urlStr) else { return }
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard error == nil else {
-                completion(.failure(CustomErrors.failedLoadingPhoto))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(CustomErrors.unexpected))
-                return
-            }
-            
-            guard let image = UIImage(data: data) else {
-                completion(.failure(CustomErrors.failedLoadingPhoto))
-                return
-            }
-            
-            self?.imageCache.setObject(image, forKey: urlStr as NSString)
-            
-            DispatchQueue.main.async {
-                completion(.success(image))
             }
         }
         task.resume()

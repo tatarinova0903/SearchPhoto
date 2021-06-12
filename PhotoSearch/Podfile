@@ -7,4 +7,5 @@ target 'PhotoSearch' do
 
   # Pods for PhotoSearch
 	pod 'PinLayout'
+	pod 'Kingfisher', '~> 6.0'
 end

@@ -64,13 +64,13 @@ class SearchPhotoViewController: UIViewController {
     
     // MARK: - Configures
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.description().description)
     }
     
-    func configureSearchBar() {
+    private func configureSearchBar() {
         searchBar.delegate = self
     }
 
@@ -99,9 +99,7 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as? ImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        presenter.getPhoto(for: indexPath.row) { (image) in
-            cell.configure(with: image)
-        }
+        cell.configure(with: presenter.getImageURL(for: indexPath.row))
         return cell
     }
     

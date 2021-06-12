@@ -73,6 +73,7 @@
 		431258A7266FACAC00D88AF3 /* PhotoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				439C30E82674C8F3000999BD /* Entities */,
 				43E82F7F2670BED600BA94A8 /* Helpers */,
 				431258C7266FB02A00D88AF3 /* APIKey */,
 				431258C0266FACF300D88AF3 /* ViewControllers */,
@@ -100,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				431258C1266FAF1200D88AF3 /* NetworkManager.swift */,
-				431258C4266FAFB300D88AF3 /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +127,14 @@
 				431258C8266FB03E00D88AF3 /* APIKey.swift */,
 			);
 			path = APIKey;
+			sourceTree = "<group>";
+		};
+		439C30E82674C8F3000999BD /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				431258C4266FAFB300D88AF3 /* Photo.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		43E82F7F2670BED600BA94A8 /* Helpers */ = {

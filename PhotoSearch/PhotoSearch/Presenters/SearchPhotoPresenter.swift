@@ -6,7 +6,6 @@ protocol SearchPhotoPresenterProtocol: AnyObject {
     func getPhotos(page: Int, query: String)
     
     var photosCount: Int { get }
-    func getPhoto(for index: Int, completion: @escaping (UIImage?) -> Void)
     func getImageURL(for index: Int) -> String
 }
 
@@ -51,18 +50,6 @@ class SearchPhotoPresenter: SearchPhotoPresenterProtocol {
     
     func getImageURL(for index: Int) -> String {
         res[index].urls.small
-    }
-    
-    func getPhoto(for index: Int, completion: @escaping (UIImage?) -> Void) {
-        networkManager.getPhoto(urlStr: res[index].urls.small) { (res) in
-            switch res {
-            case .success(let image):
-                completion(image)
-            case .failure(let err):
-                completion(nil)
-                print(err.localizedDescription)
-            }
-        }
     }
     
 }
