@@ -48,7 +48,10 @@ class RandomPhotoViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         view.addSubview(imageView)
-        view.addSubview(generateButton)        
+        view.addSubview(generateButton)
+        let interection = UIContextMenuInteraction(delegate: self)
+        imageView.addInteraction(interection)
+        imageView.isUserInteractionEnabled = true
     }
     
     override func viewWillLayoutSubviews() {
@@ -77,12 +80,33 @@ class RandomPhotoViewController: UIViewController {
         imageView.image = nil
         presenter.getPhoto()
     }
+    
+    @objc
+    func imageViewTapped() {
+        print(#function)
+    }
 }
 
+// MARK: - Extensions
 
 extension RandomPhotoViewController: RandomPhotoViewProtocol {
     func setPhoto(with urlStr: String) {
         let url = URL(string: urlStr)
+        imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: url)
+    }
+}
+
+extension RandomPhotoViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+              identifier: nil,
+              previewProvider: nil,
+              actionProvider: { _ in
+                let saveAction = UIAction(title: "Save Image", image: UIImage(systemName: "square.and.arrow.down")) { [weak self] _ in
+                    self?.presenter.saveImage(self?.imageView.image)
+                }
+                return UIMenu(title: "", children: [saveAction])
+            })
     }
 }

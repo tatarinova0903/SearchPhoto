@@ -7,6 +7,8 @@ protocol SearchPhotoPresenterProtocol: AnyObject {
     
     var photosCount: Int { get }
     func getImageURL(for index: Int) -> String
+    
+    func saveImage(_ image: UIImage?)
 }
 
 class SearchPhotoPresenter: SearchPhotoPresenterProtocol {
@@ -49,7 +51,13 @@ class SearchPhotoPresenter: SearchPhotoPresenterProtocol {
     }
     
     func getImageURL(for index: Int) -> String {
-        res[index].urls.small
+        res[index].urls.regular
     }
     
+    func saveImage(_ image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    }
 }

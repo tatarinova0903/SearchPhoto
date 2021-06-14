@@ -3,6 +3,7 @@ import UIKit
 protocol RandomPhotoPresenterProtocol: AnyObject {
     func setDelegate(with delegate: RandomPhotoViewProtocol)
     func getPhoto()
+    func saveImage(_ image: UIImage?)
 }
 
 class RandomPhotoPresenter: RandomPhotoPresenterProtocol {
@@ -32,5 +33,12 @@ class RandomPhotoPresenter: RandomPhotoPresenterProtocol {
                 print(err.localizedDescription)
             }
         }
+    }
+    
+    func saveImage(_ image: UIImage?) {
+        guard let image = image else {
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 }

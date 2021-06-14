@@ -44,6 +44,13 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     func configure(with imageURL: String) {
         let url = URL(string: imageURL)
+        imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: url)
+    }
+    
+    // MARK: - Handlers
+    
+    func getImage() -> UIImage? {
+        imageView.image
     }
 }

@@ -116,6 +116,20 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
             presenter.getPhotos(page: page, query: query)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+              identifier: nil,
+              previewProvider: nil,
+              actionProvider: { _ in
+                let saveAction = UIAction(title: "Save Image", image: UIImage(systemName: "square.and.arrow.down")) { [weak self] _ in
+                    guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else { return }
+                    self?.presenter.saveImage(cell.getImage())
+                }
+                return UIMenu(title: "", children: [saveAction])
+            })
+    }
+    
 }
 
 extension SearchPhotoViewController: UISearchBarDelegate {
